@@ -1,11 +1,12 @@
-<div class="SocialSharingButtons">
+<div class="container-fluid SocialSharingButtons">
+    <span>Share this:</span>
     {% for button in __SELF__.property('buttons_order') %}
-        {% if(__SELF__.property(button)) %}
-            <a href="{{ __SELF__.property('buttons_parameters')[button]['href'] }}" title="{{ __SELF__.property('buttons_parameters')[button]['title'] }}" target="_blank" class="{{ __SELF__.property('buttons_parameters')[button]['class']['ssbuttons'] }}"><i class="{{ __SELF__.property('buttons_parameters')[button]['icon'] }}"></i>&nbsp;&nbsp;{{ __SELF__.property('buttons_parameters')[button]['label'] }}</a>
-        {% endif %}
+    {% if(__SELF__.property(button)) %}
+    <a href="{{ __SELF__.property('buttons_parameters')[button]['href'] }}" title="{{ __SELF__.property('buttons_parameters')[button]['title'] }}" target="_blank" class="{{ __SELF__.property('buttons_parameters')[button]['class']['ssbuttons'] }}"><i class="{{ __SELF__.property('buttons_parameters')[button]['icon'] }}"></i>&nbsp;&nbsp;{{ __SELF__.property('buttons_parameters')[button]['label'] }}</a>
+    {% endif %}
     {% endfor %}
 </div>
 
 {% if __SELF__.property('js') %}
-    <script src="/plugins/martin/ssbuttons/assets/js/ssbuttons.js"></script>
+<script src="../../plugins/martin/ssbuttons/assets/js/ssbuttons.js"></script>
 {% endif %}

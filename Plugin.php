@@ -40,9 +40,7 @@
 
         public function registerComponents() {
             return [
-                'Martin\SSButtons\Components\SSButtons'    => 'ssbuttons',
-                'Martin\SSButtons\Components\SSButtonsNB'  => 'ssbuttonsnb',
-                'Martin\SSButtons\Components\SSButtonsSSB' => 'ssbuttonsssb'
+                'Martin\SSButtons\Components\SSButtons'    => 'ssbuttons'
             ];
         }
 

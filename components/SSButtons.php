@@ -1,81 +1,78 @@
 <?php
 
-    namespace Martin\SSButtons\Components;
+namespace Martin\SSButtons\Components;
 
+use Cms\Classes\ComponentBase;
     use Lang;
-    use Cms\Classes\ComponentBase;
-    use Cms\Classes\Page;
     use Martin\SSButtons\Classes\ButtonsParameters as Buttons;
     use Martin\SSButtons\Classes\Shared;
 
-    class SSButtons extends ComponentBase {
-
+    class SSButtons extends ComponentBase
+    {
         public $defaultSort = ['twitter', 'facebook', 'google+', 'stumbleupon', 'linkedin'];
 
-        public function componentDetails() {
+        public function componentDetails()
+        {
             return [
                 'name'        => 'martin.ssbuttons::lang.components.ssbuttons.name',
-                'description' => 'martin.ssbuttons::lang.components.ssbuttons.description'
+                'description' => 'martin.ssbuttons::lang.components.ssbuttons.description',
             ];
         }
 
-        public function onRun() {
+        public function onRun()
+        {
 
-            # LOAD FA CSS
-            if($this->properties['fa'] == 'maxcdn') {
+            // LOAD FA CSS
+            if ($this->properties['fa'] == 'maxcdn') {
                 $this->addCss('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
             }
 
-            # LOAD COMPONENT CUSTOM CSS
+            // LOAD COMPONENT CUSTOM CSS
             $this->addCss('/plugins/martin/ssbuttons/assets/css/social-sharing.css');
 
-            # GET BUTTONS PARAMETERS
+            // GET BUTTONS PARAMETERS
             $title = ($this->properties['js']) ? '___title___' : $this->page->title;
-            $url   = ($this->properties['js']) ? '___url___'   : url($this->page->url);
+            $url = ($this->properties['js']) ? '___url___' : url($this->page->url);
             $this->properties['buttons_parameters'] = Buttons::getParameters($title, $url);
 
-            # GET BUTTONS ORDER
-            if($this->properties['custom_order']) {
+            // GET BUTTONS ORDER
+            if ($this->properties['custom_order']) {
                 $props = $this->getProperties();
                 $order = Shared::customSortButtons($props);
             } else {
                 $order = $this->defaultSort;
             }
 
-            # SET BUTTONS ORDER
+            // SET BUTTONS ORDER
             $this->properties['buttons_order'] = $order;
-
         }
 
-        public function defineProperties() {
+        public function defineProperties()
+        {
 
-            # BUTTONS FOR THIS COMPONENT
+            // BUTTONS FOR THIS COMPONENT
             $buttons = $this->defaultSort;
 
-            # LOAD FA
+            // LOAD FA
             $properties['fa'] = Shared::getPropertyFA();
 
-            # USE JS
+            // USE JS
             $properties['js'] = Shared::getPropertyJS();
 
-            # SHOW / HIDE BUTTONS
-            foreach($buttons as $button) {
+            // SHOW / HIDE BUTTONS
+            foreach ($buttons as $button) {
                 $properties[$button] = Shared::getPropertyButtons($button);
             }
 
-            # ENABLE CUSTOM ORDER
+            // ENABLE CUSTOM ORDER
             $properties['custom_order'] = Shared::getPropertyCustomOrder();
 
-            # BUTTONS CUSTOM ORDER
+            // BUTTONS CUSTOM ORDER
             $i = 1;
-            foreach($buttons as $button) {
-                $properties['order_' . $button] = Shared::getPropertyOrder($button, $i++, count($buttons));
+            foreach ($buttons as $button) {
+                $properties['order_'.$button] = Shared::getPropertyOrder($button, $i++, count($buttons));
             }
 
             return $properties;
-
         }
-
     }
-
-?>

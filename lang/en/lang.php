@@ -5,7 +5,7 @@
         'plugin' => [
             'name'              => 'Social Sharing Buttons',
             'description'       => 'Display buttons to share content on different social networks',
-            'permissions'       => 'Single Sign-on login for backend'
+            'permissions'       => 'Single Sign-on login for backend',
         ],
 
         'settings' => [
@@ -30,12 +30,12 @@
             ],
             'ssbuttonsnb' => [
                 'name'        => 'Share current page (Alt)',
-                'description' => 'Display buttons to share the current page (No Bootstrap required)'
+                'description' => 'Display buttons to share the current page (No Bootstrap required)',
             ],
             'ssbuttonsssb' => [
                 'name'        => 'Simple Sharing Buttons',
-                'description' => 'Display buttons to share the current page (Multiple themes included)'
-            ]
+                'description' => 'Display buttons to share the current page (Multiple themes included)',
+            ],
         ],
 
         'shared' => [
@@ -47,8 +47,6 @@
             'order_valid'   => 'The order position needs to be a number between 1 - 5',
             'js_title'      => 'Use JS for Title & URL',
             'js_descr'      => 'Use JavaScript to generate page Title and URL. Useful for SEO extensions',
-        ]
+        ],
 
     ];
-
-?>

@@ -1,17 +1,15 @@
 <?php
 
-    namespace Martin\SSButtons\Classes;
+namespace Martin\SSButtons\Classes;
 
-    use Lang;
-
-    class ButtonsParameters {
-
-        public static function getParameters($title, $url) {
-
-            $parameters = [
+class ButtonsParameters
+{
+    public static function getParameters($title, $url)
+    {
+        $parameters = [
 
                 'twitter' => [
-                    'href'  => 'https://twitter.com/share?url=' . urlencode($url) . '&text=' . urlencode($title),
+                    'href'  => 'https://twitter.com/share?url='.urlencode($url).'&text='.urlencode($title),
                     'title' => 'Share on Twitter',
                     'class' => ['ssbuttons' => 'btn btn-twitter', 'ssbuttonsnb' => 'share-btn twitter'],
                     'icon'  => 'fa fa-twitter',
@@ -20,7 +18,7 @@
                 ],
 
                 'facebook' => [
-                    'href'  => 'https://www.facebook.com/sharer/sharer.php?u=' . urlencode($url),
+                    'href'  => 'https://www.facebook.com/sharer/sharer.php?u='.urlencode($url),
                     'title' => 'Share on Facebook',
                     'class' => ['ssbuttons' => 'btn btn-facebook', 'ssbuttonsnb' => 'share-btn facebook'],
                     'icon'  => 'fa fa-facebook',
@@ -29,7 +27,7 @@
                 ],
 
                 'google+' => [
-                    'href'  => 'https://plus.google.com/share?url=' . urlencode($url),
+                    'href'  => 'https://plus.google.com/share?url='.urlencode($url),
                     'title' => 'Share on Google+',
                     'class' => ['ssbuttons' => 'btn btn-googleplus', 'ssbuttonsnb' => 'share-btn google-plus'],
                     'icon'  => 'fa fa-google',
@@ -38,7 +36,7 @@
                 ],
 
                 'stumbleupon' => [
-                    'href'  => 'http://www.stumbleupon.com/submit?url=' . urlencode($url) . '&title=' . urlencode($title),
+                    'href'  => 'http://www.stumbleupon.com/submit?url='.urlencode($url).'&title='.urlencode($title),
                     'title' => 'Share on StumbleUpon',
                     'class' => ['ssbuttons' => 'btn btn-stumbleupon', 'ssbuttonsnb' => 'share-btn stumbleupon'],
                     'icon'  => 'fa fa-stumbleupon',
@@ -47,7 +45,7 @@
                 ],
 
                 'linkedin' => [
-                    'href'  => 'https://www.linkedin.com/shareArticle?mini=true&url=' . urlencode($url) . '&title=' . urlencode($title),
+                    'href'  => 'https://www.linkedin.com/shareArticle?mini=true&url='.urlencode($url).'&title='.urlencode($title),
                     'title' => 'Share on LinkedIn',
                     'class' => ['ssbuttons' => 'btn btn-linkedin', 'ssbuttonsnb' => 'share-btn linkedin'],
                     'icon'  => 'fa fa-linkedin',
@@ -56,7 +54,7 @@
                 ],
 
                 'tumblr' => [
-                    'href'  => 'https://www.tumblr.com/share?v=3&u=' . urlencode($url) . '&t=' . urlencode($title) . '&s=',
+                    'href'  => 'https://www.tumblr.com/share?v=3&u='.urlencode($url).'&t='.urlencode($title).'&s=',
                     'title' => 'Post to Tumblr',
                     'class' => '',
                     'icon'  => '',
@@ -65,7 +63,7 @@
                 ],
 
                 'pinterest' => [
-                    'href'  => 'https://pinterest.com/pin/create/button/?url=' . urlencode($url) . '&description=' . urlencode($title),
+                    'href'  => 'https://pinterest.com/pin/create/button/?url='.urlencode($url).'&description='.urlencode($title),
                     'title' => 'Pin it',
                     'class' => '',
                     'icon'  => '',
@@ -74,7 +72,7 @@
                 ],
 
                 'pocket' => [
-                    'href'  => 'https://getpocket.com/save?url=' . urlencode($url) . '&title=' . urlencode($title),
+                    'href'  => 'https://getpocket.com/save?url='.urlencode($url).'&title='.urlencode($title),
                     'title' => 'Add to Pocket',
                     'class' => '',
                     'icon'  => '',
@@ -83,7 +81,7 @@
                 ],
 
                 'reddit' => [
-                    'href'  => 'https://www.reddit.com/submit?url=' . urlencode($url) . '&title=' . urlencode($title),
+                    'href'  => 'https://www.reddit.com/submit?url='.urlencode($url).'&title='.urlencode($title),
                     'title' => 'Submit to Reddit',
                     'class' => '',
                     'icon'  => '',
@@ -92,7 +90,7 @@
                 ],
 
                 'wordpress' => [
-                    'href'  => 'https://wordpress.com/press-this.php?u=' . urlencode($url) . '&t=' . urlencode($title) . '&s=' . urlencode($title),
+                    'href'  => 'https://wordpress.com/press-this.php?u='.urlencode($url).'&t='.urlencode($title).'&s='.urlencode($title),
                     'title' => 'Publish on WordPress',
                     'class' => '',
                     'icon'  => '',
@@ -101,7 +99,7 @@
                 ],
 
                 'pinboard' => [
-                    'href'  => 'https://pinboard.in/popup_login/?url=' . urlencode($url) . '&title=' . urlencode($title) . '&description=' . urlencode($title),
+                    'href'  => 'https://pinboard.in/popup_login/?url='.urlencode($url).'&title='.urlencode($title).'&description='.urlencode($title),
                     'title' => 'Save to Pinboard',
                     'class' => '',
                     'icon'  => '',
@@ -110,7 +108,7 @@
                 ],
 
                 'email' => [
-                    'href'  => 'mailto:?subject=' . urlencode($title) . '&body=' . urlencode($title) . ':%20' . urlencode($url),
+                    'href'  => 'mailto:?subject='.urlencode($title).'&body='.urlencode($title).':%20'.urlencode($url),
                     'title' => 'Email',
                     'class' => '',
                     'icon'  => '',
@@ -120,10 +118,6 @@
 
             ];
 
-            return $parameters;
-
-        }
-
+        return $parameters;
     }
-
-?>
+}

@@ -1,58 +1,60 @@
 <?php
 
-    namespace Martin\SSButtons\Components;
+namespace Martin\SSButtons\Components;
 
+use Cms\Classes\ComponentBase;
     use Lang;
-    use Cms\Classes\ComponentBase;
-    use Cms\Classes\Page;
     use Martin\SSButtons\Classes\ButtonsParameters as Buttons;
     use Martin\SSButtons\Classes\Shared;
 
-    class SSButtonsSSB extends ComponentBase {
-
+    class SSButtonsSSB extends ComponentBase
+    {
         public $defaultSort = ['facebook', 'twitter', 'google+', 'tumblr', 'pinterest', 'pocket', 'reddit', 'linkedin', 'wordpress', 'pinboard', 'email'];
 
-        public function componentDetails() {
+        public function componentDetails()
+        {
             return [
                 'name'        => 'martin.ssbuttons::lang.components.ssbuttonsssb.name',
-                'description' => 'martin.ssbuttons::lang.components.ssbuttonsssb.description'
+                'description' => 'martin.ssbuttons::lang.components.ssbuttonsssb.description',
             ];
         }
 
-        public function onRun() {
+        public function onRun()
+        {
 
-            # LOAD COMPONENT CUSTOM CSS
+            // LOAD COMPONENT CUSTOM CSS
             $this->addCss('/plugins/martin/ssbuttons/assets/css/social-sharing-ssb.css');
 
-            # GET BUTTONS PARAMETERS
+            // GET BUTTONS PARAMETERS
             $title = ($this->properties['js']) ? '___title___' : $this->page->title;
-            $url   = ($this->properties['js']) ? '___url___'   : url($this->page->url);
+            $url = ($this->properties['js']) ? '___url___' : url($this->page->url);
             $this->properties['buttons_parameters'] = Buttons::getParameters($title, $url);
 
-            # GET BUTTONS ORDER
-            if($this->properties['custom_order']) {
+            // GET BUTTONS ORDER
+            if ($this->properties['custom_order']) {
                 $props = $this->getProperties();
                 $order = Shared::customSortButtons($props);
             } else {
                 $order = $this->defaultSort;
             }
 
-            # SET BUTTONS ORDER
+            // SET BUTTONS ORDER
             $this->properties['buttons_order'] = $order;
-
         }
 
-        public function onRender() {
-            # ICONS TYPE
+        public function onRender()
+        {
+            // ICONS TYPE
             $this->page['type'] = (strpos($this->properties['theme'], 'svg') ? 'svg' : 'png');
         }
 
-        public function defineProperties() {
+        public function defineProperties()
+        {
 
-            # BUTTONS FOR THIS COMPONENT
+            // BUTTONS FOR THIS COMPONENT
             $buttons = $this->defaultSort;
 
-            # THEME
+            // THEME
             $properties['theme'] = [
                 'title'             => 'Icons theme',
                 'type'              => 'dropdown',
@@ -66,30 +68,26 @@
                     'simple_icons'                  => 'Simple Icons',
                     'simple_icons_black'            => 'Simple Icons - Black',
                 ],
-                'showExternalParam' => false
+                'showExternalParam' => false,
             ];
 
-            # USE JS
+            // USE JS
             $properties['js'] = Shared::getPropertyJS();
 
-            # SHOW / HIDE BUTTONS
-            foreach($buttons as $button) {
+            // SHOW / HIDE BUTTONS
+            foreach ($buttons as $button) {
                 $properties[$button] = Shared::getPropertyButtons($button);
             }
 
-            # ENABLE CUSTOM ORDER
+            // ENABLE CUSTOM ORDER
             $properties['custom_order'] = Shared::getPropertyCustomOrder();
 
-            # BUTTONS CUSTOM ORDER
+            // BUTTONS CUSTOM ORDER
             $i = 1;
-            foreach($buttons as $button) {
-                $properties['order_' . $button] = Shared::getPropertyOrder($button, $i++, count($buttons));
+            foreach ($buttons as $button) {
+                $properties['order_'.$button] = Shared::getPropertyOrder($button, $i++, count($buttons));
             }
 
             return $properties;
-
         }
-
     }
-
-?>
